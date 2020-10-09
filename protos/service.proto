@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pitwall;
+
+import "protos/car.proto";
+
+option go_package = "protos/pitwall";
+
+service Timings {
+  rpc Session(EmptyRequest) returns (SessionReply) {}
+  rpc RaceUpdates(EmptyRequest) returns (stream CarReply) {}
+};
+
+message EmptyRequest {};
+
+message SessionReply {
+  Session session = 1;
+};
+
+message CarReply {
+  repeated Car cars = 1;
+};
